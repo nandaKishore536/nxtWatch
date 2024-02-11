@@ -1,0 +1,125 @@
+.popBg {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+  background-size: cover;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 60px;
+}
+
+@media screen and (min-width: 768px) {
+  .popBg {
+    margin-top: 5px;
+  }
+}
+
+.firstPart {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.popImg {
+  width: 120px;
+}
+
+@media screen and (min-width: 768px) {
+  .popImg {
+    width: 140px;
+  }
+}
+
+.popDescription {
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .popDescription {
+    font-size: 18px;
+  }
+}
+
+.popBtn {
+  background-color: transparent;
+  border: 1px solid #1e293b;
+  color: #1e293b;
+  font-size: 12px;
+  padding: 5px 8px 5px 8px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-family: 'Roboto';
+  width: 100px;
+}
+
+@media screen and (min-width: 768px) {
+  .popBtn {
+    font-size: 14px;
+    padding: 8px 10px 8px 10px;
+  }
+}
+
+.popCloseBtn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.mainHome {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .mainHome {
+    align-items: flex-start;
+  }
+}
+
+.secondPart {
+  align-self: flex-start;
+}
+
+.searchCon {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .searchCon {
+    width: 70%;
+  }
+}
+
+.searchElement {
+  background-color: transparent;
+  border: 1px solid #475569;
+  color: #475569;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px;
+  width: 100%;
+  outline: none;
+  padding: 8px 14px 8px 14px;
+}
+
+.searchBtn {
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 2px;
+  margin: 0px;
+  padding: 0px;
+  padding: 6px;
+  border: 1px solid #475569;
+}
