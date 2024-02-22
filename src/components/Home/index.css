@@ -75,11 +75,19 @@
   background-color: #f9f9f9;
   min-height: 100vh;
   align-items: center;
+  width: 75%;
+}
+
+.M {
+  display: flex;
 }
 
 @media screen and (min-width: 768px) {
   .mainHome {
     align-items: flex-start;
+  }
+  .M {
+    display: flex;
   }
 }
 

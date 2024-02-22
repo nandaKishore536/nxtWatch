@@ -2,7 +2,22 @@ import {Component} from 'react'
 
 import Cookies from 'js-cookie'
 
-import './index.css'
+import {
+  LoginBg,
+  LoginSubBg,
+  LogoCon,
+  Logo,
+  InputCon,
+  Label,
+  Input,
+  CheckboxCon,
+  Check,
+  ShowPassword,
+  Submit,
+  ErrorMsg,
+} from './styleComponents'
+
+import ThemeContext from '../../context/ThemeContext'
 
 class Login extends Component {
   state = {
@@ -45,9 +60,11 @@ class Login extends Component {
     const jsonData = await response.json()
 
     if (response.ok) {
+      const {history} = this.props
       Cookies.set('jwt_token', jsonData.jwt_token, {
         expires: 30,
       })
+      history.replace('/')
     } else {
       this.setState({showError: true, errorMsg: jsonData.error_msg})
     }
@@ -56,64 +73,70 @@ class Login extends Component {
   render() {
     const {username, password, showError, errorMsg} = this.state
     return (
-      <div className="loginBg">
-        <form className="loginSubBg" onSubmit={this.onSubmit}>
-          <div className="logoCon">
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-              alt="logo"
-              className="logo"
-            />
-          </div>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDark} = value
 
-          <div className="inputCon">
-            <label className="login_label" htmlFor="username">
-              USERNAME
-            </label>
+          return (
+            <LoginBg dark={isDark}>
+              <LoginSubBg dark={isDark} onSubmit={this.onSubmit}>
+                <LogoCon>
+                  <Logo
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                    alt="logo"
+                  />
+                </LogoCon>
 
-            <input
-              type="text"
-              className="username"
-              id="username"
-              placeholder="Username"
-              value={username}
-              onChange={this.onName}
-            />
-          </div>
+                <InputCon>
+                  <Label dark={isDark} htmlFor="username">
+                    USERNAME
+                  </Label>
 
-          <div className="inputCon">
-            <label className="login_label" htmlFor="password">
-              PASSWORD
-            </label>
+                  <Input
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    dark={isDark}
+                    value={username}
+                    onChange={this.onName}
+                  />
+                </InputCon>
 
-            <input
-              type="password"
-              className="username"
-              id="password"
-              placeholder="Password"
-              value={password}
-              onChange={this.onPassword}
-            />
-          </div>
+                <InputCon>
+                  <Label dark={isDark} htmlFor="password">
+                    PASSWORD
+                  </Label>
 
-          <div className="showCon">
-            <input
-              type="checkbox"
-              id="checkbox"
-              className="checkbox"
-              onChange={this.onCheck}
-            />
-            <label htmlFor="checkbox" className="showPassword">
-              Show Password
-            </label>
-          </div>
+                  <Input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    value={password}
+                    dark={isDark}
+                    onChange={this.onPassword}
+                  />
+                </InputCon>
 
-          <button type="submit" className="btn">
-            Login
-          </button>
-          {showError && <p className="errorMsg">{errorMsg}</p>}
-        </form>
-      </div>
+                <CheckboxCon>
+                  <Check
+                    type="checkbox"
+                    id="checkbox"
+                    onChange={this.onCheck}
+                  />
+                  <ShowPassword dark={isDark} htmlFor="checkbox">
+                    Show Password
+                  </ShowPassword>
+                </CheckboxCon>
+
+                <Submit type="submit">Login</Submit>
+                {showError && (
+                  <ErrorMsg className="errorMsg">{errorMsg}</ErrorMsg>
+                )}
+              </LoginSubBg>
+            </LoginBg>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

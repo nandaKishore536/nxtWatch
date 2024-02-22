@@ -5,6 +5,8 @@ import {BiSearchAlt2} from 'react-icons/bi'
 
 import Header from '../Header'
 
+import SideBar from '../SideBar'
+
 import './index.css'
 
 class Home extends Component {
@@ -55,6 +57,10 @@ class Home extends Component {
     )
   }
 
+  onChangeInput = event => {
+    this.setState({search: event.target.value})
+  }
+
   displaySearch = () => {
     const {search} = this.state
 
@@ -64,6 +70,7 @@ class Home extends Component {
           type="search"
           className="searchElement"
           placeholder="Search"
+          onChange={this.onChangeInput}
           value={search}
         />
         <button type="button" className="searchBtn">
@@ -77,9 +84,12 @@ class Home extends Component {
     return (
       <>
         <Header />
-        <div className="mainHome">
-          {this.displayPop()}
-          <div className="searchCon">{this.displaySearch()}</div>
+        <div className="M">
+          <SideBar />
+          <div className="mainHome">
+            {this.displayPop()}
+            <div className="searchCon">{this.displaySearch()}</div>
+          </div>
         </div>
       </>
     )
